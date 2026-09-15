@@ -5,19 +5,19 @@ const resources = [
     title: 'Tài liệu',
     description: 'Xem lại nội dung của từng buổi',
     icon: '📚',
-    href: './documents'
+    href: './#/documents'
   },
   {
     title: 'Luyện tập',
     description: 'Tự luyện để năng cao nâng lực:D',
     icon: '✏️',
-    href: './practice'
+    href: './#/practice'
   },
   {
     title: 'Nộp bài',
     description: 'Nộp bài / project của mình',
     icon: '📤',
-    href: './upload'
+    href: './#/upload'
   }
 ]
 
