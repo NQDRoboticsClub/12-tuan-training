@@ -26,7 +26,7 @@ const roadmap = [
     week: 1,
     title: 'Intro Webdev',
     topics: ['Browser', 'Server', 'HTTP', 'HTML / CSS / JS'],
-    project: 'Hello, World!',
+    project: 'ko có btvn',
     expected: '18/09/2026'
   },
   {
