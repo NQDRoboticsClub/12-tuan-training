@@ -1,15 +1,20 @@
 <script setup>
 import { ref } from "vue"
 
-const name = ref('')
-const session = ref('')
-const assignment = ref('')
-const className = ref('')
-const link = ref('')
+const API_BASE_URL = "https://robotics-backend-ktby.onrender.com"
+
+const name = ref("")
+const session = ref("")
+const assignment = ref("")
+const className = ref("")
+const link = ref("")
 const files = ref([])
 const isDragging = ref(false)
 const fileInput = ref(null)
+
 const submitted = ref(false)
+const submitting = ref(false)
+const error = ref("")
 
 const addFiles = (fileList) => {
   for (const file of fileList) {
@@ -20,12 +25,19 @@ const addFiles = (fileList) => {
 const onDrop = (e) => {
   e.preventDefault()
   isDragging.value = false
-  if (e.dataTransfer?.files?.length) addFiles(e.dataTransfer.files)
+
+  if (e.dataTransfer?.files?.length) {
+    addFiles(e.dataTransfer.files)
+  }
 }
 
 const onPick = (e) => {
-  if (e.target.files?.length) addFiles(e.target.files)
-  e.target.value = ''
+  if (e.target.files?.length) {
+    addFiles(e.target.files)
+  }
+
+  // Allow selecting the same file again later
+  e.target.value = ""
 }
 
 const removeFile = (index) => {
@@ -34,7 +46,10 @@ const removeFile = (index) => {
 
 const formatSize = (bytes) => {
   if (bytes < 1024) return `${bytes} B`
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`
+  if (bytes < 1024 * 1024) {
+    return `${(bytes / 1024).toFixed(1)} KB`
+  }
+
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
 }
 
@@ -43,28 +58,115 @@ const canSubmit = () => {
     name.value.trim() &&
     session.value &&
     assignment.value.trim() &&
-    className.value &&
-    (files.value.length || link.value.trim())
+    className.value.trim() &&
+    (files.value.length > 0 || link.value.trim())
   )
 }
 
-const handleSubmit = () => {
-  if (!canSubmit()) return
+const uploadFiles = async () => {
+  if (!files.value.length) {
+    return null
+  }
 
-  // TODO: hook this up to actual upload endpoint
-  submitted.value = true
+  const formData = new FormData()
+
+  formData.append("name", name.value.trim())
+  formData.append("class", className.value.trim())
+  formData.append("lesson", session.value)
+  formData.append("assignment", assignment.value.trim())
+
+  for (const file of files.value) {
+    formData.append("files", file)
+  }
+
+  const response = await fetch(`${API_BASE_URL}/upload/files`, {
+    method: "POST",
+    body: formData,
+  })
+
+  const data = await response.json()
+
+  if (!response.ok) {
+    throw new Error(data.message || data.error || "Không thể upload file")
+  }
+
+  return data
+}
+
+const uploadLink = async () => {
+  if (!link.value.trim()) {
+    return null
+  }
+
+  const response = await fetch(`${API_BASE_URL}/upload/link`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: name.value.trim(),
+      class: className.value.trim(),
+      lesson: Number(session.value),
+      assignment: assignment.value.trim(),
+      link: link.value.trim(),
+    }),
+  })
+
+  const data = await response.json()
+
+  if (!response.ok) {
+    throw new Error(data.message || data.error || "Không thể gửi link")
+  }
+
+  return data
+}
+
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms))
+
+const handleSubmit = async () => {
+  if (!canSubmit() || submitting.value) {
+    return
+  }
+
+  submitting.value = true
+  error.value = ""
+
+  try {
+    if (files.value.length > 0) {
+      await uploadFiles()
+    }
+
+    if (link.value.trim()) {
+      await delay(500)
+      await uploadLink()
+    }
+
+    submitted.value = true
+  } catch (err) {
+    console.error("Submission failed:", err)
+
+    error.value =
+      err instanceof Error
+        ? err.message
+        : "Có lỗi xảy ra khi nộp bài. Vui lòng thử lại."
+  } finally {
+    submitting.value = false
+  }
 }
 
 const resetForm = () => {
-  name.value = ''
-  session.value = ''
-  assignment.value = ''
-  className.value = ''
-  link.value = ''
+  name.value = ""
+  session.value = ""
+  assignment.value = ""
+  className.value = ""
+  link.value = ""
   files.value = []
   submitted.value = false
+  submitting.value = false
+  error.value = ""
 }
 </script>
+
 
 <template>
   <main class="course-grid min-h-screen">
@@ -248,17 +350,18 @@ const resetForm = () => {
           </label>
 
         </div>
-
+        <div v-if="error" class="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {{ error }}
+        </div>
         <!-- Submit -->
-        <button type="submit" :disabled="!canSubmit()"
+        <button type="submit" :disabled="!canSubmit() || submitting"
           class="w-full rounded-xl px-5 py-3 text-sm font-bold text-white shadow-sm transition-colors duration-200"
-          :class="canSubmit()
+          :class="canSubmit() && !submitting
             ? 'bg-primary-600 hover:bg-primary-700'
             : 'cursor-not-allowed bg-muted text-muted-foreground'
             ">
-          Nộp bài
+          {{ submitting ? "Đang nộp bài..." : "Nộp bài" }}
         </button>
-
       </form>
 
       <!-- Footer -->
