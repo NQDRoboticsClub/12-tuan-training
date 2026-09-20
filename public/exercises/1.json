@@ -1,0 +1,182 @@
+{
+  "$schema": "./quiz.schema.json",
+  "name": "HTML Basics",
+  "id": 1,
+  "contents": [
+    {
+      "questionId": "q-001",
+      "type": "multichoice",
+      "header": {
+        "question": "Which tag defines the largest heading?"
+      },
+      "content": {
+        "choices": [
+          { "content": "<h1>", "answer": true },
+          { "content": "<h6>", "answer": false },
+          { "content": "<head>", "answer": false },
+          { "content": "<header>", "answer": false }
+        ]
+      }
+    },
+    {
+      "questionId": "q-002",
+      "type": "true_false",
+      "header": {
+        "question": "Mark each statement as true or false."
+      },
+      "content": {
+        "keys": [
+          { "content": "<p> defines a paragraph.", "answer": true },
+          { "content": "<a> creates a hyperlink.", "answer": true },
+          { "content": "<br> requires a closing tag.", "answer": false },
+          { "content": "<img> is a container for other elements.", "answer": false }
+        ]
+      }
+    },
+    {
+      "questionId": "q-003",
+      "type": "gap_text",
+      "header": {
+        "question": "Type the missing word."
+      },
+      "content": {
+        "text": [
+          "The ",
+          { "type": "gap", "answer": ["href"] },
+          " attribute of the <a> tag sets the link destination."
+        ]
+      }
+    },
+    {
+      "questionId": "q-004",
+      "type": "gap_dnd",
+      "header": {
+        "question": "Drag the correct tag into the gap."
+      },
+      "content": {
+        "text": [
+          "Use the ",
+          { "type": "gap", "answer": "<title>" },
+          " tag to set the text shown in the browser tab."
+        ],
+        "unused": ["<header>", "<h1>"]
+      }
+    },
+    {
+      "questionId": "q-005",
+      "type": "sorting",
+      "header": {
+        "question": "Arrange the lines into a valid HTML document."
+      },
+      "content": {
+        "order": [
+          "<!DOCTYPE html>",
+          "<html>",
+          [
+            {
+              "group": [
+                "<head>",
+                [
+                  "<meta charset=\"UTF-8\">",
+                  "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+                  "<title>Document Title</title>"
+                ],
+                "</head>"
+              ]
+            },
+            {
+              "group": ["<body>", "<h1>Hello, World!</h1>", "</body>"]
+            }
+          ],
+          "</html>"
+        ]
+      }
+    },
+    {
+      "questionId": "q-006",
+      "type": "nested_dnd_sort",
+      "header": {
+        "question": "Build the HTML document by dragging each piece into place."
+      },
+      "content": {
+        "root": [
+          "<!DOCTYPE html>",
+          {
+            "type": "block",
+            "content": [
+              "<html>",
+              "!!newline",
+              {
+                "type": "drop",
+                "root": [
+                  [
+                    {
+                      "type": "block",
+                      "content": [
+                        "<head>",
+                        "!!newline",
+                        {
+                          "type": "drop",
+                          "root": [
+                            [
+                              "<meta charset=\"UTF-8\">",
+                              "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+                              {
+                                "type": "drop",
+                                "root": [
+                                  {
+                                    "type": "block",
+                                    "content": [
+                                      "<title>",
+                                      { "type": "drop", "root": ["Document"] },
+                                      "</title>"
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          ]
+                        },
+                        "!!newline",
+                        "</head>"
+                      ]
+                    },
+                    {
+                      "type": "block",
+                      "content": [
+                        "<body>",
+                        "!!newline",
+                        {
+                          "type": "drop",
+                          "root": [
+                            {
+                              "type": "drop",
+                              "root": [
+                                {
+                                  "type": "block",
+                                  "content": [
+                                    "<p>",
+                                    { "type": "drop", "root": ["Hello, World!"] },
+                                    "</p>"
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        "!!newline",
+                        "</body>"
+                      ]
+                    }
+                  ]
+                ]
+              },
+              "!!newline",
+              "</html>"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -9,9 +9,11 @@
         <p class="font-bold text-primary-700"> Web & Web App </p>
       </div>
     </a>
-    <div class="course-note rotate-2 rounded-2xl p-5 m-12 shadow-sm">
-      <p class="text-xs font-bold text-primary-700"> Đang xây 👷‍♀️</p>
-      <p class="mt-2 text-sm leading-6"> Sẽ xong trong 2-3 ngày nữa... </p>
-    </div>
   </header>
+  <section>
+
+  </section>
+
+  <footer class="mt-16 border-t border-border py-8 text-center text-xs text-muted-foreground">
+    Và chúng mình là... NQD Robotics Club🤖 </footer>
 </template>

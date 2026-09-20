@@ -23,44 +23,42 @@ const resources = [
 
 const roadmap = [
   {
-    week: 1,
+    week: 0,
     title: 'Intro Webdev',
     topics: ['Browser', 'Server', 'HTTP', 'HTML / CSS / JS'],
     project: 'ko có btvn',
     expected: '18/09/2026'
   },
   {
-    week: 2,
+    week: 1,
     title: 'HTML cơ bản',
     topics: ['Semantic HTML', 'Forms', 'Images', 'Tables'],
     project: 'Trang profile cơ bản',
     expected: '21/09/2026'
   },
   {
-    week: 3,
+    week: 2,
     title: 'CSS cơ bản',
     topics: ['Box model', 'Flexbox', 'Grid', 'Position'],
     project: 'Trang trí profile',
     expected: '25/09/2026'
   },
   {
-    week: 4,
+    week: 3,
     title: 'JavaScript',
     topics: ['Variables', 'Functions', 'Arrays', 'Objects'],
     project: 'Bài tập code',
     expected: '28/09/2026'
-
   },
   {
-    week: 5,
+    week: 4,
     title: 'Async & APIs',
     topics: ['Promise', 'async / await', 'fetch', 'JSON'],
     project: 'Gọi một API mở',
     expected: '02/10/2026'
-
   },
   {
-    week: 6,
+    week: 5,
     title: 'DOM',
     topics: ['querySelector', 'Elements', 'classList'],
     project: 'Chỉnh trang web với JS',
@@ -68,7 +66,7 @@ const roadmap = [
 
   },
   {
-    week: 7,
+    week: 6,
     title: 'Events & Forms',
     topics: ['Events', 'Forms', 'Validation'],
     project: 'Tạo một form đăng ký',
@@ -76,7 +74,7 @@ const roadmap = [
 
   },
   {
-    week: 8,
+    week: 7,
     title: 'HTML / CSS / JS Project',
     topics: ['Timer', 'GitHub', 'Deploy'],
     project: 'Làm một đồng hồ bấm giờ và deploy lên github page',
@@ -84,7 +82,7 @@ const roadmap = [
 
   },
   {
-    week: 9,
+    week: 8,
     title: 'Vue cơ bản',
     topics: ['Components', 'Template', 'ref()', 'Reactive data'],
     project: 'Làm một nút đếm',
@@ -92,7 +90,7 @@ const roadmap = [
 
   },
   {
-    week: 10,
+    week: 9,
     title: 'Vue tiếp tục',
     topics: ['Props', 'Events', 'v-if', 'v-for'],
     project: 'Tiếp tục website trước',
@@ -100,7 +98,7 @@ const roadmap = [
 
   },
   {
-    week: 11,
+    week: 10,
     title: 'Vue Project',
     topics: ['Components', 'State', 'GitHub', 'Vercel'],
     project: 'Làm một todo list và deploy lên vercel',
@@ -108,7 +106,7 @@ const roadmap = [
 
   },
   {
-    week: 12,
+    week: 11,
     title: 'Electron',
     topics: ['Chromium', 'Node.js', 'Windows', 'OS integration'],
     project: 'Biến một website thành app',

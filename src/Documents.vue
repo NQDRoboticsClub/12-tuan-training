@@ -79,7 +79,7 @@ function fileNameFromPath(path) {
             : isUnlocked(week)
               ? 'course-card text-foreground hover:text-primary-600'
               : 'course-card cursor-not-allowed text-muted-foreground opacity-50 grayscale'">
-          <span> Buổi {{ String(week).padStart(2, '0') }} </span>
+          <span> Buổi {{ String(week - 1).padStart(2, '0') }} </span>
           <span v-if="!isUnlocked(week)" class="text-[10px] font-medium"> 🔒 khoá </span>
         </button>
       </nav>
