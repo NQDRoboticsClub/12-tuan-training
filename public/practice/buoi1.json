@@ -1,27 +1,31 @@
 {
-	"unlocked": true,
-	"exercises": [
-		{
-			"id": 1,
-			"name": "Bài tập 1: HTML cơ bản"
-		}
-	],
-	"files": [
-		{
-			"name": "profile1.zip",
-			"path": "/12-tuan-training/public/homeworks/buoi1/profile1.zip"
-		},
-		{
-			"name": "info1.zip",
-			"path": "/12-tuan-training/public/homeworks/buoi1/info1.zip"
-		},
-		{
-			"name": "paragraph1.zip",
-			"path": "/12-tuan-training/public/homeworks/buoi1/paragraph1.zip"
-		},
-		{
-			"name": "miniwiki1.zip",
-			"path": "/12-tuan-training/public/homeworks/buoi1/miniwiki1.zip"
-		}
-	]
+  "unlocked": true,
+  "exercises": [
+    {
+      "id": 1,
+      "name": "Bài tập 1: Các thẻ HTML cơ bản"
+    },
+    {
+      "id": 2,
+      "name": "Bài tập 2: Tạo trang giới thiệu bằng HTML"
+    }
+  ],
+  "files": [
+    {
+      "name": "profile1.zip",
+      "path": "/12-tuan-training/public/homeworks/buoi1/profile1.zip"
+    },
+    {
+      "name": "info1.zip",
+      "path": "/12-tuan-training/public/homeworks/buoi1/info1.zip"
+    },
+    {
+      "name": "paragraph1.zip",
+      "path": "/12-tuan-training/public/homeworks/buoi1/paragraph1.zip"
+    },
+    {
+      "name": "miniwiki1.zip",
+      "path": "/12-tuan-training/public/homeworks/buoi1/miniwiki1.zip"
+    }
+  ]
 }

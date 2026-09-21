@@ -1,0 +1,96 @@
+{
+  "$schema": "./quiz.schema.json",
+  "name": "HTML cơ bản: Cấu trúc trang và nội dung",
+  "id": "2",
+  "contents": [
+    {
+      "questionId": "q-201",
+      "type": "sorting",
+      "header": {
+        "question": "Sắp xếp các thẻ thành cấu trúc HTML hợp lệ."
+      },
+      "content": {
+        "order": [
+          "<!doctype html>",
+          "<html>",
+          {
+            "group": [
+              "<head>",
+              "<title>Trang của tôi</title>",
+              "</head>"
+            ]
+          },
+          {
+            "group": [
+              "<body>",
+              "<div>",
+              "Nội dung trang",
+              "</div>",
+              "</body>"
+            ]
+          },
+          "</html>"
+        ]
+      }
+    },
+    {
+      "questionId": "q-202",
+      "type": "multichoice",
+      "header": {
+        "question": "Thẻ nào dùng để tạo một bảng?"
+      },
+      "content": {
+        "choices": [
+          { "content": "<table>", "answer": true },
+          { "content": "<list>", "answer": false },
+          { "content": "<span>", "answer": false },
+          { "content": "<sub>", "answer": false }
+        ]
+      }
+    },
+    {
+      "questionId": "q-203",
+      "type": "multichoice",
+      "header": {
+        "question": "Thẻ nào chứa tiêu đề hiển thị trên tab trình duyệt?"
+      },
+      "content": {
+        "choices": [
+          { "content": "<title>", "answer": true },
+          { "content": "<head>", "answer": false },
+          { "content": "<body>", "answer": false },
+          { "content": "<strong>", "answer": false }
+        ]
+      }
+    },
+    {
+      "questionId": "q-204",
+      "type": "true_false",
+      "header": {
+        "question": "Đánh dấu mỗi nhận định là đúng hoặc sai."
+      },
+      "content": {
+        "keys": [
+          { "content": "<head> thường chứa <title>.", "answer": true },
+          { "content": "<body> chứa nội dung chính hiển thị trên trang.", "answer": true },
+          { "content": "<div> và <span> đều là thẻ cấu trúc nội dung.", "answer": true },
+          { "content": "<!doctype> là thẻ dùng để tạo một liên kết.", "answer": false }
+        ]
+      }
+    },
+    {
+      "questionId": "q-205",
+      "type": "gap_text",
+      "header": {
+        "question": "Điền thẻ còn thiếu trong cấu trúc trang."
+      },
+      "content": {
+        "text": [
+          "Một tài liệu HTML thường có ",
+          { "type": "gap", "answer": ["<html>"] },
+          " bao quanh phần <head> và <body>."
+        ]
+      }
+    }
+  ]
+}
