@@ -273,8 +273,8 @@ const actionClass = computed(() => {
 </script>
 
 <template>
-  <main class="course-grid min-h-screen">
-    <div class="mx-auto flex min-h-screen max-w-2xl flex-col px-5 py-6" :class="status === 'playing' ? 'pb-48' : ''">
+  <main class="course-grid min-h-screen" :class="status === 'playing' ? 'pb-[96px]' : ''">
+    <div class="mx-auto flex max-w-2xl flex-col px-5 py-6" :class="status === 'playing' ? 'pb-32' : ''">
 
       <!-- Loading -->
       <section v-if="status === 'loading'" class="course-card my-auto p-8 text-center text-sm text-muted-foreground">

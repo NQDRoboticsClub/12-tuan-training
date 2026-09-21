@@ -1,1 +1,1 @@
-export const currentWeek = 2;
+export const currentWeek = 1;
