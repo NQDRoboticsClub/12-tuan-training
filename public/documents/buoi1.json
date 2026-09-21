@@ -1,6 +1,11 @@
 {
-	"videos": ["39jXAxFM_DY"],
-	"others": [],
-	"slides": "",
+	"videos": ["oyQEpy5_SCY", "xrHn-WQhbhE"],
+	"others": [
+		{
+			"name": "Thực hành buổi 1",
+			"path": "/12-tuan-training/other_docs/WebsiteTrong12TuanTraining_Buoi1.zip"
+		}
+	],
+	"slides": "https://docs.google.com/presentation/d/1NgoB2ilerBDnnhXUWbeh_1ql0fxAYJcQaSank2WavsE/edit?usp=sharing",
 	"unlocked": true
 }

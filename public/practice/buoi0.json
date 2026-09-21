@@ -1,0 +1,27 @@
+{
+	"unlocked": true,
+	"exercises": [
+		{
+			"id": 1,
+			"name": "Bài tập 1: Làm quen với HTML"
+		},
+		{
+			"id": 2,
+			"name": "Bài tập 2: Tạo trang web đầu tiên"
+		},
+		{
+			"id": 3,
+			"name": "Bài tập 3: Thực hành CSS"
+		}
+	],
+	"files": [
+		{
+			"name": "bai-tap-01.zip",
+			"path": "/12-tuan-training/files/buoi0/bai-tap-01.zip"
+		},
+		{
+			"name": "template.html",
+			"path": "/12-tuan-training/files/buoi0/template.html"
+		}
+	]
+}

@@ -1,0 +1,371 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Quiz configuration",
+  "description": "Config format for a quiz made of typed questions: multichoice, true_false, gap_text, gap_dnd, sorting and nested_dnd_sort.",
+  "type": "object",
+  "required": ["name", "id", "contents"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Optional pointer to this schema, for editor validation."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable quiz title."
+    },
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the quiz."
+    },
+    "contents": {
+      "type": "array",
+      "description": "Ordered list of questions.",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/question" }
+    }
+  },
+
+  "$defs": {
+    "question": {
+      "description": "A single question. The 'type' field selects which 'content' shape applies.",
+      "oneOf": [
+        { "$ref": "#/$defs/multichoiceQuestion" },
+        { "$ref": "#/$defs/trueFalseQuestion" },
+        { "$ref": "#/$defs/gapTextQuestion" },
+        { "$ref": "#/$defs/gapDndQuestion" },
+        { "$ref": "#/$defs/sortingQuestion" },
+        { "$ref": "#/$defs/nestedDndSortQuestion" }
+      ]
+    },
+
+    "questionId": {
+      "type": "string",
+      "description": "Identifier of the question. Should be unique within the quiz (JSON Schema cannot enforce this; validate it in code)."
+    },
+
+    "header": {
+      "type": "object",
+      "description": "Prompt shown above the question body.",
+      "required": ["question"],
+      "additionalProperties": false,
+      "properties": {
+        "question": {
+          "type": "string",
+          "description": "Plain-text prompt."
+        },
+        "questionHTML": {
+          "type": "string",
+          "description": "Optional. HTML version of the prompt, e.g. \"<p> Button </p>\"."
+        },
+        "img": {
+          "type": "string",
+          "description": "Optional. Path to an image shown with the prompt, e.g. \"path/to/img\"."
+        }
+      }
+    },
+
+    "multichoiceQuestion": {
+      "type": "object",
+      "description": "Pick the single correct choice.",
+      "required": ["questionId", "type", "header", "content"],
+      "additionalProperties": false,
+      "properties": {
+        "questionId": { "$ref": "#/$defs/questionId" },
+        "type": { "const": "multichoice" },
+        "header": { "$ref": "#/$defs/header" },
+        "content": {
+          "type": "object",
+          "required": ["choices"],
+          "additionalProperties": false,
+          "properties": {
+            "choices": {
+              "type": "array",
+              "description": "Answer options. Exactly one must have answer = true.",
+              "minItems": 2,
+              "items": { "$ref": "#/$defs/answerOption" },
+              "contains": {
+                "type": "object",
+                "properties": { "answer": { "const": true } },
+                "required": ["answer"]
+              },
+              "minContains": 1,
+              "maxContains": 1
+            }
+          }
+        }
+      }
+    },
+
+    "trueFalseQuestion": {
+      "type": "object",
+      "description": "A list of statements, each marked individually as true or false.",
+      "required": ["questionId", "type", "header", "content"],
+      "additionalProperties": false,
+      "properties": {
+        "questionId": { "$ref": "#/$defs/questionId" },
+        "type": { "const": "true_false" },
+        "header": { "$ref": "#/$defs/header" },
+        "content": {
+          "type": "object",
+          "required": ["keys"],
+          "additionalProperties": false,
+          "properties": {
+            "keys": {
+              "type": "array",
+              "description": "Statements to judge. Any number may be true.",
+              "minItems": 1,
+              "items": { "$ref": "#/$defs/answerOption" }
+            }
+          }
+        }
+      }
+    },
+
+    "answerOption": {
+      "type": "object",
+      "required": ["content", "answer"],
+      "additionalProperties": false,
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "Text shown for this option."
+        },
+        "answer": {
+          "type": "boolean",
+          "description": "Whether this option is correct / true."
+        }
+      }
+    },
+
+    "gapTextQuestion": {
+      "type": "object",
+      "description": "Fill-in-the-blank where the learner types the answer.",
+      "required": ["questionId", "type", "header", "content"],
+      "additionalProperties": false,
+      "properties": {
+        "questionId": { "$ref": "#/$defs/questionId" },
+        "type": { "const": "gap_text" },
+        "header": { "$ref": "#/$defs/header" },
+        "content": {
+          "type": "object",
+          "required": ["text"],
+          "additionalProperties": false,
+          "properties": {
+            "text": {
+              "type": "array",
+              "description": "Sequence of plain-text segments and gaps, in reading order.",
+              "minItems": 1,
+              "items": {
+                "anyOf": [
+                  { "type": "string", "description": "Plain text segment." },
+                  { "$ref": "#/$defs/textGap" }
+                ]
+              },
+              "contains": { "type": "object" }
+            }
+          }
+        }
+      }
+    },
+
+    "textGap": {
+      "type": "object",
+      "description": "A typed-answer gap.",
+      "required": ["type", "answer"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "gap" },
+        "answer": {
+          "type": "array",
+          "description": "All accepted answers for this gap.",
+          "minItems": 1,
+          "items": { "type": "string" }
+        }
+      }
+    },
+
+    "gapDndQuestion": {
+      "type": "object",
+      "description": "Fill-in-the-blank where the learner drags words into the gaps.",
+      "required": ["questionId", "type", "header", "content"],
+      "additionalProperties": false,
+      "properties": {
+        "questionId": { "$ref": "#/$defs/questionId" },
+        "type": { "const": "gap_dnd" },
+        "header": { "$ref": "#/$defs/header" },
+        "content": {
+          "type": "object",
+          "required": ["text"],
+          "additionalProperties": false,
+          "properties": {
+            "text": {
+              "type": "array",
+              "description": "Sequence of plain-text segments and gaps, in reading order.",
+              "minItems": 1,
+              "items": {
+                "anyOf": [
+                  { "type": "string", "description": "Plain text segment." },
+                  { "$ref": "#/$defs/dndGap" }
+                ]
+              },
+              "contains": { "type": "object" }
+            },
+            "unused": {
+              "type": "array",
+              "description": "Distractor words shown in the word bank but not used in any gap.",
+              "items": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+
+    "dndGap": {
+      "type": "object",
+      "description": "A drag-and-drop gap.",
+      "required": ["type", "answer"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "gap" },
+        "answer": {
+          "type": "string",
+          "description": "The single correct word for this gap."
+        }
+      }
+    },
+
+    "sortingQuestion": {
+      "type": "object",
+      "description": "Arrange items into the correct order.",
+      "required": ["questionId", "type", "header", "content"],
+      "additionalProperties": false,
+      "properties": {
+        "questionId": { "$ref": "#/$defs/questionId" },
+        "type": { "const": "sorting" },
+        "header": { "$ref": "#/$defs/header" },
+        "content": {
+          "type": "object",
+          "required": ["order"],
+          "additionalProperties": false,
+          "properties": {
+            "order": {
+              "type": "array",
+              "description": "The correct order. Written order is the answer, except where an array marks items as interchangeable.",
+              "minItems": 1,
+              "items": { "$ref": "#/$defs/sortNode" }
+            }
+          }
+        }
+      }
+    },
+
+    "sortNode": {
+      "description": "One entry in a sorting order.",
+      "anyOf": [
+        {
+          "type": "string",
+          "description": "A single draggable item."
+        },
+        {
+          "type": "array",
+          "description": "Interchangeable items: these may appear in any order relative to each other.",
+          "minItems": 2,
+          "items": { "$ref": "#/$defs/sortNode" }
+        },
+        {
+          "type": "object",
+          "description": "A group that moves as one block. Its children keep the order given (nested arrays inside are still interchangeable).",
+          "required": ["group"],
+          "additionalProperties": false,
+          "properties": {
+            "group": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "$ref": "#/$defs/sortNode" }
+            }
+          }
+        }
+      ]
+    },
+
+    "nestedDndSortQuestion": {
+      "type": "object",
+      "description": "Build a nested structure by dragging items into drop zones inside blocks.",
+      "required": ["questionId", "type", "header", "content"],
+      "additionalProperties": false,
+      "properties": {
+        "questionId": { "$ref": "#/$defs/questionId" },
+        "type": { "const": "nested_dnd_sort" },
+        "header": { "$ref": "#/$defs/header" },
+        "content": {
+          "type": "object",
+          "required": ["root"],
+          "additionalProperties": false,
+          "properties": {
+            "root": {
+              "type": "array",
+              "description": "Top-level answer. Written order is the answer. Plain strings here are draggable text.",
+              "minItems": 1,
+              "items": { "$ref": "#/$defs/nestedNode" }
+            }
+          }
+        }
+      }
+    },
+
+    "nestedNode": {
+      "description": "An entry in 'root' or in a drop zone's 'root'.",
+      "anyOf": [
+        {
+          "type": "string",
+          "description": "Draggable text."
+        },
+        {
+          "type": "array",
+          "description": "Interchangeable entries: they may appear in any order relative to each other.",
+          "minItems": 2,
+          "items": { "$ref": "#/$defs/nestedNode" }
+        },
+        { "$ref": "#/$defs/block" },
+        { "$ref": "#/$defs/drop" }
+      ]
+    },
+
+    "block": {
+      "type": "object",
+      "description": "A fixed, non-draggable frame (e.g. an opening and closing tag) that contains drop zones.",
+      "required": ["type", "content"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "block" },
+        "content": {
+          "type": "array",
+          "description": "Static text and drop zones, in display order. Plain strings here are NOT draggable. Use the string \"!!newline\" to insert a line break.",
+          "minItems": 1,
+          "items": {
+            "anyOf": [
+              { "type": "string" },
+              { "$ref": "#/$defs/drop" }
+            ]
+          }
+        }
+      }
+    },
+
+    "drop": {
+      "type": "object",
+      "description": "A drop zone. 'root' is the correct content of the zone.",
+      "required": ["type", "root"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "drop" },
+        "root": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/nestedNode" }
+        }
+      }
+    }
+  }
+}

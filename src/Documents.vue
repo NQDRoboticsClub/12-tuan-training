@@ -18,7 +18,7 @@ function emptyData() {
 async function loadLesson(week) {
   lessons[week] = { loading: true, error: false, data: emptyData() }
   try {
-    const res = await fetch(`/12-tuan-training/documents/buoi${week}.json`)
+    const res = await fetch(`/12-tuan-training/documents/buoi${week - 1}.json`)
     if (week == 1) {
       console.log(res);
     }
