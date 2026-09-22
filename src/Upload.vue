@@ -259,6 +259,12 @@ const resetForm = () => {
               <option v-for="i in 12" :key="i" :value="i">
                 Buổi {{ i }}
               </option>
+              <option :key="13" :value="13">
+                Lego, UAV/Drone & Thiết kế sửa chữa
+              </option>
+              <option :key="14" :value="14">
+                Arduino và Raspberry Pi
+              </option>
             </select>
           </label>
 
