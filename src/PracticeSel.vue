@@ -3,7 +3,7 @@ import { computed, onMounted, reactive, ref } from 'vue'
 
 const TOTAL_WEEKS = 12
 const lessons = reactive({})
-const activeWeek = ref(0)
+const activeWeek = ref(1)
 const currentLesson = computed(() => lessons[activeWeek.value])
 
 const emptyData = () => ({ unlocked: false, exercises: [], files: [] })

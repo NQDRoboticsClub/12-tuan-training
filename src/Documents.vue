@@ -9,7 +9,7 @@ const TOTAL_WEEKS = 12
 
 // lessons[week] = { loading, error, data: { videos, others, slides, unlocked } }
 const lessons = reactive({})
-const activeWeek = ref(1)
+const activeWeek = ref(2)
 
 function emptyData() {
   return { videos: [], others: [], slides: null, unlocked: false }
