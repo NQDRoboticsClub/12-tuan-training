@@ -1,0 +1,23 @@
+{
+	"unlocked": true,
+	"exercises": [
+		{
+			"id": 3,
+			"name": "Bài tập 3: Schematic HTML"
+		},
+		{
+			"id": 4,
+			"name": "Bài tập 4: CSS cơ bản"
+		}
+	],
+	"files": [
+		{
+			"name": "profile2.zip",
+			"path": "/12-tuan-training/homeworks/buoi2/profile2.zip"
+		},
+		{
+			"name": "miniwiki2.zip",
+			"path": "/12-tuan-training/homeworks/buoi2/miniwiki2.zip"
+		}
+	]
+}

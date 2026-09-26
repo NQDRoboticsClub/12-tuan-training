@@ -1,0 +1,97 @@
+{
+  "$schema": "./quiz.schema.json",
+  "name": "HTML ngữ nghĩa (Semantic HTML)",
+  "id": "3",
+  "contents": [
+    {
+      "questionId": "q-301",
+      "type": "multichoice",
+      "header": {
+        "question": "Thẻ nào dùng để đánh dấu phần điều hướng (menu) chính của trang?"
+      },
+      "content": {
+        "choices": [
+          { "content": "<nav>", "answer": true },
+          { "content": "<header>", "answer": false },
+          { "content": "<aside>", "answer": false },
+          { "content": "<section>", "answer": false }
+        ]
+      }
+    },
+    {
+      "questionId": "q-302",
+      "type": "multichoice",
+      "header": {
+        "question": "Thẻ nào dùng để bao bọc một nội dung độc lập, có thể tồn tại tách rời khỏi trang (ví dụ một bài viết blog)?"
+      },
+      "content": {
+        "choices": [
+          { "content": "<article>", "answer": true },
+          { "content": "<div>", "answer": false },
+          { "content": "<section>", "answer": false },
+          { "content": "<span>", "answer": false }
+        ]
+      }
+    },
+    {
+      "questionId": "q-303",
+      "type": "true_false",
+      "header": {
+        "question": "Đánh dấu mỗi nhận định là đúng hoặc sai."
+      },
+      "content": {
+        "keys": [
+          { "content": "<header> chỉ được phép xuất hiện duy nhất một lần trong toàn bộ trang.", "answer": false },
+          { "content": "<footer> thường chứa thông tin bản quyền hoặc liên hệ.", "answer": true },
+          { "content": "<aside> dùng để chứa nội dung liên quan nhưng tách biệt với nội dung chính.", "answer": true },
+          { "content": "<section> luôn bắt buộc phải có thuộc tính id.", "answer": false }
+        ]
+      }
+    },
+    {
+      "questionId": "q-304",
+      "type": "gap_text",
+      "header": {
+        "question": "Điền tên thẻ còn thiếu."
+      },
+      "content": {
+        "text": [
+          "Thẻ ",
+          { "type": "gap", "answer": ["<main>"] },
+          " dùng để chứa nội dung chính, duy nhất của trang, và chỉ nên xuất hiện một lần."
+        ]
+      }
+    },
+    {
+      "questionId": "q-305",
+      "type": "gap_dnd",
+      "header": {
+        "question": "Kéo thẻ phù hợp vào chỗ trống."
+      },
+      "content": {
+        "text": [
+          "Thẻ ",
+          { "type": "gap", "answer": "<figcaption>" },
+          " dùng để chú thích cho nội dung bên trong <figure> (ví dụ một hình ảnh)."
+        ],
+        "unused": ["<caption>", "<legend>"]
+      }
+    },
+    {
+      "questionId": "q-306",
+      "type": "sorting",
+      "header": {
+        "question": "Sắp xếp các thẻ ngữ nghĩa theo bố cục hợp lý của một trang web (từ trên xuống dưới)."
+      },
+      "content": {
+        "order": [
+          "<header>",
+          "<nav>",
+          "<main>",
+          ["<article>", "<aside>"],
+          "<footer>"
+        ]
+      }
+    }
+  ]
+}

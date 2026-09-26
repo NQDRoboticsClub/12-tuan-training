@@ -1,0 +1,106 @@
+{
+  "$schema": "./quiz.schema.json",
+  "name": "CSS cơ bản: Selector và Property",
+  "id": "4",
+  "contents": [
+    {
+      "questionId": "q-401",
+      "type": "multichoice",
+      "header": {
+        "question": "Cú pháp nào dùng để chọn phần tử theo class?"
+      },
+      "content": {
+        "choices": [
+          { "content": ".ten-class", "answer": true },
+          { "content": "#ten-class", "answer": false },
+          { "content": "ten-class", "answer": false },
+          { "content": "*ten-class", "answer": false }
+        ]
+      }
+    },
+    {
+      "questionId": "q-402",
+      "type": "multichoice",
+      "header": {
+        "question": "Thuộc tính CSS nào dùng để thay đổi màu chữ?"
+      },
+      "content": {
+        "choices": [
+          { "content": "color", "answer": true },
+          { "content": "background-color", "answer": false },
+          { "content": "font-color", "answer": false },
+          { "content": "text-style", "answer": false }
+        ]
+      }
+    },
+    {
+      "questionId": "q-403",
+      "type": "true_false",
+      "header": {
+        "question": "Đánh dấu mỗi nhận định là đúng hoặc sai."
+      },
+      "content": {
+        "keys": [
+          { "content": "Bộ chọn #id có độ ưu tiên cao hơn bộ chọn .class.", "answer": true },
+          { "content": "CSS là viết tắt của Cascading Style Sheets.", "answer": true },
+          { "content": "Thuộc tính margin dùng để tạo khoảng cách bên trong, giữa nội dung và viền của phần tử.", "answer": false },
+          { "content": "Bộ chọn * (dấu sao) chọn tất cả các phần tử trên trang.", "answer": true }
+        ]
+      }
+    },
+    {
+      "questionId": "q-404",
+      "type": "gap_text",
+      "header": {
+        "question": "Điền tên thuộc tính còn thiếu."
+      },
+      "content": {
+        "text": [
+          "Thuộc tính ",
+          { "type": "gap", "answer": ["padding"] },
+          " dùng để tạo khoảng cách bên trong, giữa nội dung và viền của phần tử."
+        ]
+      }
+    },
+    {
+      "questionId": "q-405",
+      "type": "gap_dnd",
+      "header": {
+        "question": "Kéo ký hiệu phù hợp vào chỗ trống."
+      },
+      "content": {
+        "text": [
+          "Để chọn phần tử theo id, ta dùng ký hiệu ",
+          { "type": "gap", "answer": "#" },
+          " đặt trước tên id."
+        ],
+        "unused": [".", "*"]
+      }
+    },
+    {
+      "questionId": "q-406",
+      "type": "nested_dnd_sort",
+      "header": {
+        "question": "Kéo các thành phần vào đúng vị trí để tạo thành một quy tắc CSS hợp lệ."
+      },
+      "content": {
+        "root": [
+          {
+            "type": "block",
+            "content": [
+              { "type": "drop", "root": ["p"] },
+              " {",
+              "!!newline",
+              { "type": "drop", "root": ["color"] },
+              ": ",
+              { "type": "drop", "root": ["red"] },
+              ";",
+              "!!newline",
+              "}"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
